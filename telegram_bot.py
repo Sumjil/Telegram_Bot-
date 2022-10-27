@@ -42,7 +42,6 @@ def user_answer(message):
 
 
 def get_task(message):
-    #global to_do_list
     global st
     text_from_user = message.text
     if message.text is not None:
@@ -60,9 +59,7 @@ def get_task(message):
 
 
 def done_task(message):
-    #global to_do_list
     global st
-
     text_from_user = message.text
 
     if message.text is not None:
