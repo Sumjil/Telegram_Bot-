@@ -25,12 +25,13 @@ def create_list(message):
 
 @bot.message_handler(content_types=['text'])
 def user_answer(message):
-
+    global st
     if message.text == "Add tasks to the to-do list":
         bot.send_message(message.from_user.id,
                          "Start adding your tasks and when you finish send me a dot .")
         bot.register_next_step_handler(message, get_task)
     elif message.text == "Show me my to-do list":
+        st = write_todo_list(dict_todo_list[message.from_user.id])
         bot.send_message(message.from_user.id, f"Your to-do list:\n{st}")
     elif message.text == "Done some of the task":
         bot.send_message(message.from_user.id,
