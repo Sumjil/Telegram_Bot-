@@ -65,17 +65,13 @@ def done_task(message):
 
     if message.text is not None:
         if text_from_user.isdigit() and int(text_from_user) <= len(dict_todo_list[message.from_user.id]) and int(text_from_user) > 0:
-            if int(text_from_user) <= len(dict_todo_list[message.from_user.id]) and int(text_from_user)>0:
-                dict_todo_list[message.from_user.id].pop(int(text_from_user)-1)
-                bot.send_sticker(message.chat.id, sticker=random.choice(stickers_list))
-                bot.send_message(message.from_user.id, random.choice(cheer_up_messages))
-
-                st = write_todo_list(dict_todo_list[message.from_user.id])
-                bot.send_message(message.from_user.id, f"Your to-do list:\n{st}")
-                bot.register_next_step_handler(message, done_task)
-            else:
-                bot.send_message(message.from_user.id, f"You sent something incorrectly, maybe the wrong number of your task or your to-do list is empty\n Try again or send me a dot . to exit to the main menu")
-                bot.register_next_step_handler(message, done_task)
+            dict_todo_list[message.from_user.id].pop(int(text_from_user)-1)
+            bot.send_sticker(message.chat.id, sticker=random.choice(stickers_list))
+            bot.send_message(message.from_user.id, random.choice(cheer_up_messages))
+            st = write_todo_list(dict_todo_list[message.from_user.id])
+            bot.send_message(message.from_user.id, f"Your to-do list:\n{st}")
+            bot.register_next_step_handler(message, done_task)
+            
         elif text_from_user == '.':
             st = write_todo_list(dict_todo_list[message.from_user.id])
             bot.send_message(message.from_user.id, f"Your to-do list:\n{st}")
