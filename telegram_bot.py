@@ -48,16 +48,7 @@ def create_list(message):
                            reply_markup=rmk)
     bot.register_next_step_handler(msg, user_answer)
 
-# @bot.message_handler(commands=['delete'])
-# def delete (message):
-#     db = sqlite3.connect('tele_bot.db')
-#     cursor = db.cursor()
-#     people_id = message.chat.id
-#     cursor.execute(f"DELETE FROM To_do_list")
-#     db.commit()
-#     bot.send_message(message.from_user.id, "delete")
-
-
+    
 @bot.message_handler(content_types=['text'])
 def user_answer(message):
     global st
