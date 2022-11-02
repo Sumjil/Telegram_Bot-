@@ -17,7 +17,7 @@ def create_list(message):
     cursor = db.cursor()
 
     # cursor.execute(""" CREATE TABLE Users (
-    #     users_id integer ,
+    #     users_id INTEGER,
     #     name VARCHAR(225)
     # )""")
     # db.commit()
