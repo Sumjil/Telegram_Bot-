@@ -48,7 +48,6 @@ def create_list(message):
     
 @bot.message_handler(content_types=['text'])
 def user_answer(message):
-    global st
     db = sqlite3.connect('tele_bot.db')
     cursor = db.cursor()
     if message.text == "Add tasks to the to-do list":
@@ -84,7 +83,6 @@ def get_task(message):
 
 
 def done_task(message):
-    global st
     text_from_user = message.text
     db = sqlite3.connect('tele_bot.db')
     cursor = db.cursor()
