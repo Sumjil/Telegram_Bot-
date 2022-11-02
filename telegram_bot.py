@@ -7,8 +7,6 @@ import random
 import sqlite3
 
 bot = telebot.TeleBot(configure.config['token'])
-dict_todo_list = {}
-st = ""
 stickers_list = read_file.read("stickers.txt")
 cheer_up_messages = read_file.read("messages.txt")
 
@@ -20,12 +18,12 @@ def create_list(message):
 
     # cursor.execute(""" CREATE TABLE Users (
     #     users_id integer ,
-    #     name text
+    #     name VARCHAR(225)
     # )""")
     # db.commit()
 
     # cursor.execute(""" CREATE TABLE To_do_list (
-    #     task text,
+    #     task VARCHAR(225),
     #     users_id INTEGER,
     #     FOREIGN KEY(users_id) REFERENCES Users (users_id)
     # );""")
@@ -36,8 +34,7 @@ def create_list(message):
     if data is None:
         cursor.execute(f'INSERT INTO Users VALUES ({message.chat.id}, "{message.chat.first_name}");')
         db.commit()
-    # else:
-    #     bot.send_message(message.from_user.id, "You are in the database")
+
 
     rmk = types.ReplyKeyboardMarkup(resize_keyboard=True)
     rmk.add(types.KeyboardButton("Add tasks to the to-do list"))
