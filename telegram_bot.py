@@ -12,17 +12,15 @@ cheer_up_messages = read_file.read("messages.txt")
 
 @bot.message_handler(commands=['start'])
 def create_list(message):
-
     db = sqlite3.connect('tele_bot.db')
     cursor = db.cursor()
-
+    
     cursor.execute(f"SELECT users_id FROM Users WHERE users_id = {message.chat.id}")
     data = cursor.fetchone()
     if data is None:
         cursor.execute(f'INSERT INTO Users VALUES ({message.chat.id}, "{message.chat.first_name}");')
         db.commit()
-
-
+        
     rmk = types.ReplyKeyboardMarkup(resize_keyboard=True)
     rmk.add(types.KeyboardButton("Add tasks to the to-do list"))
     rmk.add(types.KeyboardButton("Show me my to-do list"))
