@@ -16,19 +16,6 @@ def create_list(message):
     db = sqlite3.connect('tele_bot.db')
     cursor = db.cursor()
 
-    # cursor.execute(""" CREATE TABLE Users (
-    #     users_id INTEGER,
-    #     name VARCHAR(225)
-    # )""")
-    # db.commit()
-
-    # cursor.execute(""" CREATE TABLE To_do_list (
-    #     task VARCHAR(225),
-    #     users_id INTEGER,
-    #     FOREIGN KEY(users_id) REFERENCES Users (users_id)
-    # );""")
-    # db.commit()
-
     cursor.execute(f"SELECT users_id FROM Users WHERE users_id = {message.chat.id}")
     data = cursor.fetchone()
     if data is None:
